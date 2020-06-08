@@ -1,0 +1,37 @@
+
+
+<div class="outer" *ngIf="jobList">
+  <div class="jobCount" >{{jobList.length}} JOBS</div>
+      <button type="button" class="btn btn-primary" class="addButton" (click)="callModalAdd()"> + </button>
+  <div class= "inner" *ngFor="let job of jobList">
+      <span id="company">
+        {{job.companyName}}
+      </span>
+  <br>
+      <span id="title">
+        {{job.jobTitle}}
+      </span>
+    <br>
+    <button class="deleteButton" (click)="callModalDelete(job)">Delete</button>
+  </div>
+</div>
+
+<app-modal #addJobModal>
+  <h4 class="myHeader">Add a Job</h4>
+  <div class="myBody">
+    <app-job [listOfJobs]="jobList"  (notify)="onAddNotify()"></app-job>
+  </div>
+</app-modal>
+
+<app-modal #deleteJobModal>
+  <h4 class="myHeader">Delete Job</h4>
+  <div class="myBody">
+    <app-delete-job (notifyDelete)="onDeleteNotify($event)"></app-delete-job>
+  </div>
+</app-modal>
+
+
+
+
+
+

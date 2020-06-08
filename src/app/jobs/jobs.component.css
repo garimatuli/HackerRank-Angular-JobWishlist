@@ -1,0 +1,49 @@
+.outer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner {
+  height: 100px;
+  width: 400px;
+  background-color: cadetblue;
+  color: white;
+  text-align: center;
+  margin: 4px;
+  padding: 10px;
+}
+
+#company{
+  font-size: larger;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+#title{
+  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.addButton {
+  width: 400px;
+  font-size: 20px;
+  margin: 5px;
+  padding: 1px;
+  text-align: center;
+  color: black;
+  height: 35px;
+}
+
+.jobCount{
+  width: 400px;
+  font-size: medium;
+  margin: 4px;
+  padding: 4px;
+  height: 25px;
+  text-align: center;
+  color: black;
+}
+
+.deleteButton {
+  float: right;
+}

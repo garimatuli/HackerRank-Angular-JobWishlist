@@ -1,0 +1,10 @@
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  width: 150px;
+  margin: 5px;
+}
+
+button {
+  margin: 5px;
+}

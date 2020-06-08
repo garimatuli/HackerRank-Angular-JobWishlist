@@ -1,0 +1,14 @@
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+  <div>
+    <input id="companyName" type="text" formControlName="companyName" placeholder="Company Name">
+  </div>
+
+  <div>
+    <input id="jobTitle" type="text" formControlName="jobTitle" placeholder="Job Title">
+  </div>
+
+  <button class="button" type="submit" (click)="notify.emit()">Continue</button>
+
+</form>
