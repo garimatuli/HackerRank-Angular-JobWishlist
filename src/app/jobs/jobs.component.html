@@ -12,6 +12,7 @@
         {{job.jobTitle}}
       </span>
     <br>
+    <button class="editButton" routerLink="/job/{{job.id}}">Edit</button>
     <button class="deleteButton" (click)="callModalDelete(job)">Delete</button>
   </div>
 </div>
@@ -19,7 +20,7 @@
 <app-modal #addJobModal>
   <h4 class="myHeader">Add a Job</h4>
   <div class="myBody">
-    <app-job [listOfJobs]="jobList"  (notify)="onAddNotify()"></app-job>
+    <app-job [jobList]="jobList" (notify)="onAddNotify()"></app-job>
   </div>
 </app-modal>
 

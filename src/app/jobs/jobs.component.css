@@ -47,3 +47,7 @@
 .deleteButton {
   float: right;
 }
+
+.editButton {
+  float: left;
+}
