@@ -2,7 +2,7 @@
 
 <div class="outer" *ngIf="jobList">
   <div class="jobCount" >{{jobList.length}} JOBS</div>
-      <button type="button" class="btn btn-primary" class="addButton" (click)="callModalAdd()"> + </button>
+      <button type="button" class="btn btn-primary" tooltip="Click + to add a new Job Wish!!" placement="right" class="addButton" (click)="callModalAdd()"> + </button>
   <div class= "inner" *ngFor="let job of jobList">
       <span id="company">
         {{job.companyName}}
@@ -12,7 +12,7 @@
         {{job.jobTitle}}
       </span>
     <br>
-    <button class="editButton" routerLink="/job/{{job.id}}">Edit</button>
+    <button class="editButton" routerLink="/jobs/job/{{job.id}}">Edit</button>
     <button class="deleteButton" (click)="callModalDelete(job)">Delete</button>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {JobsService} from '../services/jobs.service';
-import {ModalComponent} from '../modal/modal.component';
+import {JobsService} from '../../services/jobs.service';
+import {ModalComponent} from '../../modal/modal.component';
+
 
 @Component({
   selector: 'app-jobs',
@@ -20,13 +21,13 @@ export class JobsComponent implements OnInit, OnChanges {
     this.jobsService.getJobList().subscribe( (item) => {
       this.jobList = item;
       this.jobList = JSON.parse(localStorage.getItem('myList'));
-      console.log('Value in subscribe' + this.jobList);
+      // console.log('Value in subscribe' + this.jobList);
     });
-    console.log('Value after subscribe' + this.jobList);
+    // console.log('Value after subscribe' + this.jobList);
   }
 
   ngOnChanges(): void {
-    console.log('Job List in Parent' + this.jobList);
+    // console.log('Job List in Parent' + this.jobList);
   }
 
   callModalAdd() {
@@ -35,6 +36,7 @@ export class JobsComponent implements OnInit, OnChanges {
 
   onAddNotify() {
     this.addJobModal.closeModal();
+
   }
 
   callModalDelete(job) {

@@ -1,9 +1,9 @@
 import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {JobsService} from '../services/jobs.service';
+import {JobsService} from '../../services/jobs.service';
 import { Location } from '@angular/common';
-import {Job} from '../model/job.model';
+import {Job} from '../../model/job.model';
 
 @Component({
   selector: 'app-job',
@@ -53,9 +53,9 @@ export class JobComponent implements OnInit {
       // console.log(this.job);
      this.jobList = [...this.jobsList];
      localStorage.setItem('myList', JSON.stringify(this.jobList));
-     this.router.navigate(['']);
+     this.router.navigate(['/jobs']);
       // this.jobList.push(this.job);
-     console.log(this.jobList);
+     // console.log(this.jobList);
     } else {
       this.lengthList = this.jobList.length;
       data.id = this.lengthList + 1;
@@ -71,7 +71,7 @@ export class JobComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id) {
       this.jobsList = localStorage.getItem('myList');
-      console.log(JSON.parse(this.jobsList));
+      // console.log(JSON.parse(this.jobsList));
       this.jobsList = JSON.parse(this.jobsList);
       this.job = this.jobsList.find(job => +job.id === id);
       this.checkoutForm.setValue(this.job);
