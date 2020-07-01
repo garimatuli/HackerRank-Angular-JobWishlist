@@ -13,9 +13,8 @@ export class JobsComponent implements OnInit, OnChanges {
   job: any;
   modalAction: any;
 
-  @ViewChild('addJobModal') addJobModal: ModalComponent;
+  @ViewChild('addEditJobModal') addEditJobModal: ModalComponent;
   @ViewChild('deleteJobModal') deleteJobModal: ModalComponent;
-  @ViewChild('editJobModal') editJobModal: ModalComponent;
 
   constructor(private jobsService: JobsService) { }
 
@@ -36,11 +35,17 @@ export class JobsComponent implements OnInit, OnChanges {
 
   callModalAdd() {
     this.modalAction = 'Add';
-    this.addJobModal.callOpenModal();
+    this.addEditJobModal.callOpenModal();
   }
 
-  onAddNotify() {
-    this.addJobModal.closeModal();
+  callModalEdit(job) {
+    this.modalAction = 'Edit';
+    this.job = job;
+    this.addEditJobModal.callOpenModal();
+  }
+
+  onAddEditNotify() {
+    this.addEditJobModal.closeModal();
   }
 
   callModalDelete(job) {
@@ -56,10 +61,5 @@ export class JobsComponent implements OnInit, OnChanges {
     this.deleteJobModal.closeModal();
   }
 
-  callModalEdit(job) {
-    this.modalAction = 'Edit';
-    this.job = job;
-    this.addJobModal.callOpenModal();
-  }
 
 }

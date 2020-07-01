@@ -10,37 +10,36 @@ import {Job} from '../../model/job.model';
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.css']
 })
-export class JobComponent implements OnInit {
+export class JobComponent implements OnInit, OnChanges {
   @Input() job: Job;
-  editJob: any;
+  @Input() modalAction: any;
   @Input() jobList: any;
+  editJob: any;
   @Output() notify = new EventEmitter();
+  @Output() newJobList = new EventEmitter<any[]>();
   checkoutForm;
   lengthList: number;
-  @Output() newJobList = new EventEmitter<any[]>();
-  @Input() modalAction: any;
-  localJob: any;
 
- constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private jobService: JobsService,
               private location: Location,
-              ) {
+  ) {
   }
 
   ngOnInit(): void {
 
-   console.log('child ngOnIt() called');
-   // console.log('Modal Action is:::' + this.modalAction);
+    // console.log('child ngOnIt() called');
+    // console.log('Modal Action is:::' + this.modalAction);
 
-    // this.getJob(); // to get job id from the route using route.snapshot.paramMap
+    // this.getJob(); // to get job id from the route using route.snapshot.paramMap; when not using Edit via Modal
     // // console.log(this.checkoutForm);
   }
 
 
   ngOnChanges(): void {
-   console.log('In child ngOnchanges()');
-  // console.log('Modal Action is:::' + this.modalAction);
+    // console.log('In child ngOnchanges()');
+    // console.log('Modal Action is:::' + this.modalAction);
 
     this.checkoutForm = new FormGroup({
       id: new FormControl(''),
@@ -48,39 +47,41 @@ export class JobComponent implements OnInit {
       jobTitle: new FormControl(''),
     });
 
-   if (this.modalAction === 'Edit') {
+    if (this.modalAction === 'Edit') {
       // To edit job, Making copy of job coming from parent first, then editing
-     // this.editJob = Object.assign({}, this.job);
+      // this.editJob = Object.assign({}, this.job);
       this.checkoutForm.setValue(this.job);
-   }
+    }
   }
 
   // ngDoCheck(): void {
   //  console.log('Child do check');
   // }
 
+  // onSubmit() - Both for Edit Job as well as Add Job
   onSubmit(data) {
-   // console.log(data);
+    // console.log(data);
 
-   if (data.id) {
+    if (data.id) {
       this.editJob = this.jobList.find(item => item.id === data.id);
       this.editJob.companyName = data.companyName;
       this.editJob.jobTitle = data.jobTitle;
-     console.log('Edited job is ' + this.editJob);
-    this.job = this.editJob;
-   //  localStorage.setItem('myList', JSON.stringify(this.jobList));
-     this.router.navigate(['/jobs']);
+      // console.log('Edited job is ' + this.editJob);
+      this.job = this.editJob;
+      //  localStorage.setItem('myList', JSON.stringify(this.jobList));
+      this.router.navigate(['/jobs']);
     } else {
       this.lengthList = this.jobList.length;
       data.id = this.lengthList + 1;
       // console.log(data);
       this.jobList.push(data);
-    //  localStorage.setItem('myList', JSON.stringify(this.jobList));
+      //  localStorage.setItem('myList', JSON.stringify(this.jobList));
       // this.newJobList.emit(this.jobList);
     }
     this.checkoutForm.reset();
   }
-
+}
+  // // to get job id from the route using route.snapshot.paramMap; when not using Edit via Modal
   // getJob(): void {
   //   const id = +this.route.snapshot.paramMap.get('id');
   //   if (id) {
@@ -93,4 +94,3 @@ export class JobComponent implements OnInit {
   //   }
   // }
 
-}

@@ -19,10 +19,10 @@
   </div>
 </div>
 
-<app-modal #addJobModal>
+<app-modal #addEditJobModal>
   <h4 class="myHeader">Add a Job</h4>
   <div class="myBody">
-    <app-job [jobList]="jobList" [job] = "job" [modalAction] = "modalAction" (notify)="onAddNotify()"></app-job>
+    <app-job [jobList]="jobList" [job] = "job" [modalAction] = "modalAction" (notify)="onAddEditNotify()"></app-job>
   </div>
 </app-modal>
 
