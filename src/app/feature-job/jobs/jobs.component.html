@@ -1,5 +1,5 @@
 
-<div *ngIf="jobList">Load after component</div>
+
 
 <div class="outer" *ngIf="jobList">
   <div class="jobCount" >{{jobList.length}} JOBS</div>
@@ -20,7 +20,7 @@
 </div>
 
 <app-modal #addEditJobModal>
-  <h4 class="myHeader">Add a Job</h4>
+  <h4 class="myHeader">Add/Edit a Job</h4>
   <div class="myBody">
     <app-job [jobList]="jobList" [job] = "job" [modalAction] = "modalAction" (notify)="onAddEditNotify()"></app-job>
   </div>

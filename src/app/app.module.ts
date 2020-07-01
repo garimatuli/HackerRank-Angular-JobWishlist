@@ -4,28 +4,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { AlertModule } from 'ngx-bootstrap/alert';
-import {DemoAlertBasicComponent} from './Shared/alerts/alerts.component';
-import { NavComponent } from './shared/nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoAlertBasicComponent,
-    NavComponent,
     HomeComponent,
   ],
   imports: [
     BrowserModule,
-    ModalModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule,
+    AppRoutingModule,
     TooltipModule.forRoot(),
-    AlertModule.forRoot(),
   ],
   providers: [],
   exports: [
