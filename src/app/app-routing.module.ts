@@ -16,7 +16,7 @@ const routes: Routes = [
     // a specific module can also be preloaded
     )],
 
-  /* As RouterModule is being used by other modules/components like Nav component lying in the core module, so,
+  /** As RouterModule is being used by other modules/components like Nav component lying in the core module, so,
       apart from declaring it in declarations array, we also need to export RouterModule in the export array as shown below
    */
   exports: [RouterModule]

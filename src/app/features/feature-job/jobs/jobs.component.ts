@@ -21,7 +21,7 @@ export class JobsComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.getJobs();
     // console.log('Value after subscribe' + this.jobList);
-   // console.log('parent ngOnInIt() called');
+    // console.log('parent ngOnInIt() called');
   }
 
   getJobs() {
@@ -32,8 +32,6 @@ export class JobsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    // console.log('Job List in Parent' + this.jobList);
- //   this.jobList = JSON.parse(localStorage.getItem('myList'));
     // console.log('parent ngOnChanges() called');
   }
 
@@ -78,6 +76,5 @@ export class JobsComponent implements OnInit, OnChanges {
   closeModal() {
     this.getJobs();
   }
-
 
 }

@@ -28,18 +28,12 @@ export class JobComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
     // console.log('child ngOnIt() called');
-    // console.log('Modal Action is:::' + this.modalAction);
-
-    // this.getJob(); // to get job id from the route using route.snapshot.paramMap; when not using Edit via Modal
-    // // console.log(this.checkoutForm);
   }
 
 
   ngOnChanges(): void {
     // console.log('In child ngOnchanges()');
-    // console.log('Modal Action is:::' + this.modalAction);
 
     this.checkoutForm = new FormGroup({
       id: new FormControl(''),
@@ -48,23 +42,13 @@ export class JobComponent implements OnInit, OnChanges {
     });
 
     if (this.modalAction === 'Edit') {
-      // /** getting job id passed from parent but finding that job fresh from the database
-      //  *  otherwise if you click edit , edit something but close modal without submiting the edited value,
-      //  *  on opening the modal to edit again, you find this left over edited previous value instead of the what is currently in db */
-      // this.jobService.getJob(this.job.id).subscribe((job) => {
-      //     this.editJob = job;
-      //     this.checkoutForm.setValue(this.editJob);
-      // });
       this.editJob = this.job;
       this.checkoutForm.setValue(this.editJob);
     }
   }
 
-  // ngDoCheck(): void {
-  //  console.log('Child do check');
-  // }
 
-  // onSubmit() - Both for Edit Job as well as Add Job
+  /** onSubmit() - Both for Edit Job as well as Add Job */
   onSubmit(data) {
     // console.log(data);
 
@@ -75,9 +59,7 @@ export class JobComponent implements OnInit, OnChanges {
       // this.editJob = this.jobList.find(item => item.id === data.id);
       // this.editJob.companyName = data.companyName;
       // this.editJob.jobTitle = data.jobTitle;
-      // // console.log('Edited job is ' + this.editJob);
       // this.job = this.editJob;
-      // //  localStorage.setItem('myList', JSON.stringify(this.jobList));
       // this.router.navigate(['/jobs']);
     } else {
       this.jobService.addJob(data).subscribe( () => {
@@ -85,10 +67,7 @@ export class JobComponent implements OnInit, OnChanges {
       });
       // this.lengthList = this.jobList.length;
       // data.id = this.lengthList + 1;
-      // // console.log(data);
       // this.jobList.push(data);
-      // //  localStorage.setItem('myList', JSON.stringify(this.jobList));
-      // // this.newJobList.emit(this.jobList);
     }
     this.checkoutForm.reset();
   }

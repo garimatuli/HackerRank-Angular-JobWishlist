@@ -20,6 +20,7 @@ export class ModalComponent {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+
   /** if you click edit , edit something but close modal without submitting the edited value,
    *  then on opening the modal to edit again, you find this left over edited previous value instead of what is currently in db
    *  so when close button is clicked on modal, on click event we call this function closeButtonClicked() where in
@@ -30,6 +31,7 @@ export class ModalComponent {
     this.closeModal();
     this.closeEvent.emit();
   }
+
   closeModal() {
     if (!this.modalRef) {
       return;
