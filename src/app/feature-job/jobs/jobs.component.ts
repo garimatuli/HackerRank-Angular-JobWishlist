@@ -11,32 +11,36 @@ import {ModalComponent} from '../../modal/modal.component';
 export class JobsComponent implements OnInit, OnChanges {
   jobList: any;
   job: any;
+  modalAction: any;
 
   @ViewChild('addJobModal') addJobModal: ModalComponent;
   @ViewChild('deleteJobModal') deleteJobModal: ModalComponent;
+  @ViewChild('editJobModal') editJobModal: ModalComponent;
 
   constructor(private jobsService: JobsService) { }
 
   ngOnInit() {
     this.jobsService.getJobList().subscribe( (item) => {
       this.jobList = item;
-      this.jobList = JSON.parse(localStorage.getItem('myList'));
       // console.log('Value in subscribe' + this.jobList);
     });
     // console.log('Value after subscribe' + this.jobList);
+    console.log('parent ngOnInIt() called');
   }
 
   ngOnChanges(): void {
     // console.log('Job List in Parent' + this.jobList);
+ //   this.jobList = JSON.parse(localStorage.getItem('myList'));
+    console.log('parent ngOnChanges() called');
   }
 
   callModalAdd() {
+    this.modalAction = 'Add';
     this.addJobModal.callOpenModal();
   }
 
   onAddNotify() {
     this.addJobModal.closeModal();
-
   }
 
   callModalDelete(job) {
@@ -51,4 +55,11 @@ export class JobsComponent implements OnInit, OnChanges {
     }
     this.deleteJobModal.closeModal();
   }
+
+  callModalEdit(job) {
+    this.modalAction = 'Edit';
+    this.job = job;
+    this.addJobModal.callOpenModal();
+  }
+
 }

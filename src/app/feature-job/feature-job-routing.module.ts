@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {JobsComponent} from './jobs/jobs.component';
-import {JobComponent} from './job/job.component';
+// import {JobComponent} from './job/job.component';
 
 
 const routes: Routes = [
@@ -10,7 +10,8 @@ const routes: Routes = [
     path: '',
     component: JobsComponent
   },
-  { path: 'job/:id', component: JobComponent },
+  // Changed edit job component with routing to Modal
+  // { path: 'job/:id', component: JobComponent }
 ];
 
 @NgModule({
