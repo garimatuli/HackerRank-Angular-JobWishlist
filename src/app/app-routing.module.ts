@@ -5,8 +5,8 @@ import {CustomPreloadingService} from './services/custom-preloading-service';
 
 const routes: Routes = [
   { path: 'home' , component: HomeComponent },
-  { path: 'jobs' , loadChildren: './feature-job/feature-job.module#FeatureJobModule', data: { preload: true }},
-  { path: 'places' , loadChildren: './feature-place/feature-place.module#FeaturePlaceModule' },
+  { path: 'jobs' , loadChildren: './features/feature-job/feature-job.module#FeatureJobModule', data: { preload: true }},
+  { path: 'places' , loadChildren: './features/feature-place/feature-place.module#FeaturePlaceModule' },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -15,6 +15,10 @@ const routes: Routes = [
     // pre-loading is to pre-load all lazily loaded modules using {preloadingStrategy: PreloadAllModules } above
     // a specific module can also be preloaded
     )],
+
+  /* As RouterModule is being used by other modules/components like Nav component lying in the core module, so,
+      apart from declaring it in declarations array, we also need to export RouterModule in the export array as shown below
+   */
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

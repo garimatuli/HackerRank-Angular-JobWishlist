@@ -4,9 +4,8 @@ import {JobsComponent} from './jobs/jobs.component';
 import {JobComponent} from './job/job.component';
 import {DeleteJobComponent} from './delete-job/delete-job.component';
 import {FeatureJobRoutingModule} from './feature-job-routing.module';
-import {ModalComponent} from '../shared/modal/modal.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '../../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +13,6 @@ import {SharedModule} from '../shared/shared.module';
     JobsComponent,
     JobComponent,
     DeleteJobComponent,
-    // ModalComponent
   ],
   imports: [
     CommonModule,

@@ -19,14 +19,15 @@
   </div>
 </div>
 
-<app-modal #addEditJobModal>
+<!-- if you click edit , edit something but close modal without submitting the edited value,
+   *  then on opening the modal to edit again, you find this left over edited previous value instead of what is currently in db
+   *  so we need to get an event from modal when X button on modal is clicked -->
+<app-modal #addEditJobModal (closeEvent)="closeModal()">
   <h4 class="myHeader">Add/Edit a Job</h4>
   <div class="myBody">
-    <app-job [jobList]="jobList" [job] = "job" [modalAction] = "modalAction" (notify)="onAddEditNotify()"></app-job>
+    <app-job [jobList]="jobList" [job] = "job" [modalAction] = "modalAction" (notify)="onAddEditNotify($event)"></app-job>
   </div>
 </app-modal>
-
-
 
 <app-modal #deleteJobModal>
   <h4 class="myHeader">Delete Job</h4>

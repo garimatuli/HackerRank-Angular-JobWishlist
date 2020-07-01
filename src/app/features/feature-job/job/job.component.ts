@@ -1,9 +1,9 @@
 import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {JobsService} from '../../services/jobs.service';
+import {JobsService} from '../../../services/jobsService/jobs.service';
 import { Location } from '@angular/common';
-import {Job} from '../../model/job.model';
+import {Job} from '../../../model/job.model';
 
 @Component({
   selector: 'app-job',
@@ -48,9 +48,15 @@ export class JobComponent implements OnInit, OnChanges {
     });
 
     if (this.modalAction === 'Edit') {
-      // To edit job, Making copy of job coming from parent first, then editing
-      // this.editJob = Object.assign({}, this.job);
-      this.checkoutForm.setValue(this.job);
+      // /** getting job id passed from parent but finding that job fresh from the database
+      //  *  otherwise if you click edit , edit something but close modal without submiting the edited value,
+      //  *  on opening the modal to edit again, you find this left over edited previous value instead of the what is currently in db */
+      // this.jobService.getJob(this.job.id).subscribe((job) => {
+      //     this.editJob = job;
+      //     this.checkoutForm.setValue(this.editJob);
+      // });
+      this.editJob = this.job;
+      this.checkoutForm.setValue(this.editJob);
     }
   }
 
@@ -63,20 +69,26 @@ export class JobComponent implements OnInit, OnChanges {
     // console.log(data);
 
     if (data.id) {
-      this.editJob = this.jobList.find(item => item.id === data.id);
-      this.editJob.companyName = data.companyName;
-      this.editJob.jobTitle = data.jobTitle;
-      // console.log('Edited job is ' + this.editJob);
-      this.job = this.editJob;
-      //  localStorage.setItem('myList', JSON.stringify(this.jobList));
-      this.router.navigate(['/jobs']);
+      this.jobService.updateJob(data).subscribe(() => {
+        this.notify.emit('success');
+      });
+      // this.editJob = this.jobList.find(item => item.id === data.id);
+      // this.editJob.companyName = data.companyName;
+      // this.editJob.jobTitle = data.jobTitle;
+      // // console.log('Edited job is ' + this.editJob);
+      // this.job = this.editJob;
+      // //  localStorage.setItem('myList', JSON.stringify(this.jobList));
+      // this.router.navigate(['/jobs']);
     } else {
-      this.lengthList = this.jobList.length;
-      data.id = this.lengthList + 1;
-      // console.log(data);
-      this.jobList.push(data);
-      //  localStorage.setItem('myList', JSON.stringify(this.jobList));
-      // this.newJobList.emit(this.jobList);
+      this.jobService.addJob(data).subscribe( () => {
+        this.notify.emit('success');
+      });
+      // this.lengthList = this.jobList.length;
+      // data.id = this.lengthList + 1;
+      // // console.log(data);
+      // this.jobList.push(data);
+      // //  localStorage.setItem('myList', JSON.stringify(this.jobList));
+      // // this.newJobList.emit(this.jobList);
     }
     this.checkoutForm.reset();
   }
